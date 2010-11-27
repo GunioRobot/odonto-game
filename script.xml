@@ -1,0 +1,52 @@
+<scenes first="scene_1">
+	<scene id="scene_1" sound_path="../sound/game1.mp3" regular="scene_2" good="scene_4">
+		<rules>
+			<bad value="46"/>
+			<regular value="27"/>
+			<good value="10"/>
+		</rules>
+		
+		<take id="take_1" image_path="../images/computador-menino.jpg" sound_path="../sound/waste.mp3">
+			<modals>
+				<modal id="modal_1" order="1" type="food">
+					<foods>
+						<food path="../" id="1" label="foo" category="foo" value="23"/>	
+					</foods>
+
+					<questions>
+						<question path="../" id="1" label="foo" option="x" value="0"/>
+						<question path="../" id="2" label="foo" option="y" value="1"/>
+					</questions>
+				</modal>
+			</modals>
+		</take>
+		<take id="take_2" image_path="../images/cafe_menino_op03.jpg" sound_path="../sound/waste.mp3">
+			<modals>
+				<modal id="modal_1" order="1" type="food">
+					<foods>
+						<food path="../" id="1" label="foo" category="foo" value="23"/>	
+					</foods>
+
+					<questions>
+						<question path="../" id="1" label="foo" option="x" value="0"/>
+						<question path="../" id="2" label="foo" option="y" value="1"/>
+					</questions>
+				</modal>
+			</modals>
+		</take>
+		<take id="take_3" image_path="../images/computador-menino.jpg" sound_path="../sound/starstrukk.mp3">
+			<modals>
+				<modal id="modal_1" order="1" type="food">
+					<foods>
+						<food path="../" id="1" label="foo" category="foo" value="23"/>	
+					</foods>
+
+					<questions>
+						<question path="../" id="1" label="foo" option="x" value="0"/>
+						<question path="../" id="2" label="foo" option="y" value="1"/>
+					</questions>
+				</modal>
+			</modals>
+		</take>
+	</scene>
+</scenes>
