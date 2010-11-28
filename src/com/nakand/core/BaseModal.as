@@ -1,22 +1,26 @@
 package com.nakand.core {
 	import flash.display.Sprite;
 	import flash.events.Event;
+	import flash.events.MouseEvent;
 	
 	public class BaseModal extends Sprite {
 		
 		private var _id : String;
-		private var _order : String;
+		private var _sound : String;
 		private var _type : String;
+		
+		private var _items : Array;
+		
 		
 		public function BaseModal(){
 			super();
 		}
-		
+
 		public function show_it() : void {
-			if (type == "foods") {
-				
-			} else {
-				
+			for each (var item : BaseItem in items) {
+				addChild(item);
+				item.addEventListener(MouseEvent.CLICK, on_click)
+				item.construct();
 			}
 		}
 		
@@ -26,6 +30,21 @@ package com.nakand.core {
 		
 		public function dispatch_finished_event() : void {
 			dispatchEvent(new Event("onModalFinished"));
+		}
+		
+		public function on_click(e : MouseEvent) : void {
+			trace(e.target.parent.label as String);
+			dispatch_finished_event();
+		}
+		
+		public function get items():Array
+		{
+			return _items;
+		}
+		
+		public function set items(value:Array):void
+		{
+			_items = value;
 		}
 		
 		public function get id():String
@@ -38,16 +57,6 @@ package com.nakand.core {
 			_id = value;
 		}
 		
-		public function get order():String
-		{
-			return _order;
-		}
-		
-		public function set order(value:String):void
-		{
-			_order = value;
-		}
-		
 		public function get type():String
 		{
 			return _type;
@@ -56,6 +65,16 @@ package com.nakand.core {
 		public function set type(value:String):void
 		{
 			_type = value;
+		}
+		
+		public function get sound():String
+		{
+			return _sound;
+		}
+		
+		public function set sound(value:String):void
+		{
+			_sound = value;
 		}
 		
 	}

@@ -1,52 +1,25 @@
 <scenes first="scene_1">
-	<scene id="scene_1" sound_path="../sound/game1.mp3" regular="scene_2" good="scene_4">
+	<scene id="scene_1" sound_path="../sound/starlightzone.mp3" regular="scene_2" good="scene_4">
 		<rules>
-			<bad value="46"/>
-			<regular value="27"/>
-			<good value="10"/>
+			<rule name="bad" value="46"/>
+			<rule name="regular" value="27"/>
+			<good name="good" value="10"/>
 		</rules>
-		
-		<take id="take_1" image_path="../images/computador-menino.jpg" sound_path="../sound/waste.mp3">
-			<modals>
-				<modal id="modal_1" order="1" type="food">
-					<foods>
-						<food path="../" id="1" label="foo" category="foo" value="23"/>	
-					</foods>
-
-					<questions>
-						<question path="../" id="1" label="foo" option="x" value="0"/>
-						<question path="../" id="2" label="foo" option="y" value="1"/>
-					</questions>
-				</modal>
-			</modals>
+		<take id="take_1" image_path="../images/scenario/cen_entrada.png" sound_path="../sound/secret.mp3">
+			<modal id="modal_1" type="food" sound_path="../sound/failyocarinaget.mp3">
+				<item image_path="../images/foods/abacaxi.png" sound_path="../sound/smallitemcatch.mp3" label="Abacaxi" option="" value="23"/>	
+				<item image_path="../images/foods/arroz.png" sound_path="../sound/smallitemcatch.mp3" label="Arroz" option="" value="23"/>	
+				<item image_path="../images/foods/frango.png" sound_path="../sound/smallitemcatch.mp3" label="Frango" option="" value="23"/>	
+			</modal>
+			<modal id="modal_2" type="food" sound_path="../sound/failyocarinaget.mp3">
+				<item image_path="../images/foods/sucrilhos.png" sound_path="../sound/smallitemcatch.mp3" label="Sucrilhos" option="" value="23"/>	
+			</modal>
 		</take>
-		<take id="take_2" image_path="../images/cafe_menino_op03.jpg" sound_path="../sound/waste.mp3">
-			<modals>
-				<modal id="modal_1" order="1" type="food">
-					<foods>
-						<food path="../" id="1" label="foo" category="foo" value="23"/>	
-					</foods>
-
-					<questions>
-						<question path="../" id="1" label="foo" option="x" value="0"/>
-						<question path="../" id="2" label="foo" option="y" value="1"/>
-					</questions>
-				</modal>
-			</modals>
-		</take>
-		<take id="take_3" image_path="../images/computador-menino.jpg" sound_path="../sound/starstrukk.mp3">
-			<modals>
-				<modal id="modal_1" order="1" type="food">
-					<foods>
-						<food path="../" id="1" label="foo" category="foo" value="23"/>	
-					</foods>
-
-					<questions>
-						<question path="../" id="1" label="foo" option="x" value="0"/>
-						<question path="../" id="2" label="foo" option="y" value="1"/>
-					</questions>
-				</modal>
-			</modals>
+		<take id="take_2" image_path="../images/scenario/cen02.png" sound_path="../sound/youredead.mp3"></take>
+		<take id="take_3" image_path="../images/scenario/cen03.png" sound_path="../sound/secret.mp3">
+			<modal id="modal_3" type="food" sound_path="../sound/failyocarinaget.mp3">
+				<item image_path="../images/foods/macarrao.png" sound_path="../sound/smallitemcatch.mp3" label="Macarrao" option="" value="23"/>	
+			</modal>
 		</take>
 	</scene>
 </scenes>

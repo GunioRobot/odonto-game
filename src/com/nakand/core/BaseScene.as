@@ -6,8 +6,6 @@ package com.nakand.core {
 	import flash.media.SoundChannel;
 	import flash.net.URLRequest;
 	
-	[SWF(width=640, height=480, backgroundColor='#000000', frameRate=30)]
-	
 	public class BaseScene extends Sprite{
 		
 		private var _id : String;

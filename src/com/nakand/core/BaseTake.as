@@ -42,15 +42,14 @@ package com.nakand.core {
 		
 		// finish the take and start modals if any
 		public function finish_take(e:Event) : void {
-			/*
+			
 			if (modals.length > 0) {
-				var modal : BaseModal = new BaseModal();
-				show_modal(modal);
+				trace('existem ' + modals.length + ' modais a serem exibidos');
+				show_modal(modals[modals_index]);
 			} else {
+				trace('não existem modais');
 				dispatch_finished_event();
 			}
-			*/
-			dispatch_finished_event();
 		}
 		
 		public function dispatch_finished_event() : void {
@@ -62,7 +61,9 @@ package com.nakand.core {
 			removeChild(e.target as DisplayObject);
 			if (modals_index < modals.length ) {
 				show_modal(modals[modals_index]);	
-			} 
+			} else {
+				dispatch_finished_event();
+			}
 		}
 		
 		public function show_modal(the_modal : BaseModal) : void {
