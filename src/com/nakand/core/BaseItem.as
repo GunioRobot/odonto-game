@@ -2,6 +2,8 @@ package com.nakand.core
 {
 	import flash.display.Loader;
 	import flash.display.Sprite;
+	import flash.events.Event;
+	import flash.events.MouseEvent;
 	import flash.media.Sound;
 	import flash.media.SoundChannel;
 	import flash.net.URLRequest;
@@ -13,6 +15,9 @@ package com.nakand.core
 		private var _label : String;
 		private var _option : String;
 		private var _points : Number;
+		
+		private var loaded_image : Loader;
+		private var loaded_sound : SoundChannel = new SoundChannel();
 
 		public function BaseItem()
 		{
@@ -22,10 +27,12 @@ package com.nakand.core
 		public function construct() : void {
 			trace('construindo item');
 			//add the image of this take
-			var loader : Loader = new Loader();
-			loader.load(new URLRequest(image));
-			addChild(loader);
-			loader.scaleX = loader.scaleY = .25;
+			loaded_image = new Loader();
+			loaded_image.load(new URLRequest(image));
+			loaded_image.addEventListener(MouseEvent.MOUSE_OVER, on_mouse_over);
+			loaded_image.addEventListener(MouseEvent.MOUSE_OUT, on_mouse_out);
+			addChild(loaded_image);
+			loaded_image.scaleX = loaded_image.scaleY = .5;
 			
 			// then the sound
 			/*
@@ -34,7 +41,24 @@ package com.nakand.core
 			background_sound.load(new URLRequest(sound));
 			sound_channel = background_sound.play();
 			*/
+		}
+		
+		public function on_mouse_over(e : MouseEvent) : void {
+			var mouse_over_sound:Sound = new Sound();
+			mouse_over_sound.load(new URLRequest(sound));
+			loaded_sound = mouse_over_sound.play();
+			loaded_sound.addEventListener(Event.SOUND_COMPLETE, on_sound_complete);
+			loaded_image.removeEventListener(MouseEvent.MOUSE_OVER, on_mouse_over);
+		}
+		
+		public function on_mouse_out(e : MouseEvent) : void {
+			loaded_sound.stop();
+			loaded_image.addEventListener(MouseEvent.MOUSE_OVER, on_mouse_over);
 			
+		}
+		
+		public function on_sound_complete(e : Event) : void {
+			loaded_image.addEventListener(MouseEvent.MOUSE_OVER, on_mouse_over);
 		}
 
 		public function get image():String

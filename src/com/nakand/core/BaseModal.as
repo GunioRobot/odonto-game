@@ -19,7 +19,7 @@ package com.nakand.core {
 		public function show_it() : void {
 			for each (var item : BaseItem in items) {
 				addChild(item);
-				item.addEventListener(MouseEvent.CLICK, on_click)
+				item.addEventListener(MouseEvent.CLICK, on_click);
 				item.construct();
 			}
 		}

@@ -4,6 +4,7 @@ package com.nakand.core {
 	import flash.events.Event;
 	import flash.media.Sound;
 	import flash.media.SoundChannel;
+	import flash.media.SoundTransform;
 	import flash.net.URLRequest;
 	
 	public class BaseScene extends Sprite{
@@ -29,7 +30,10 @@ package com.nakand.core {
 			var sound_channel:SoundChannel = new SoundChannel;
 			background_sound.load(new URLRequest(sound));
 			sound_channel = background_sound.play();
-			
+			var st:SoundTransform = new SoundTransform();
+			st.volume = .05;
+			sound_channel.soundTransform = st;
+
 			var current_take : BaseTake = takes[takes_index];
 			play_take(current_take);
 		}
