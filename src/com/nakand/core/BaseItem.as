@@ -33,10 +33,11 @@ package com.nakand.core
 			//add the image of this take
 			loaded_image = new Loader();
 			loaded_image.load(new URLRequest(image));
+			loaded_image.contentLoaderInfo.addEventListener(Event.INIT, init_handler);
 			loaded_image.addEventListener(MouseEvent.MOUSE_OVER, on_mouse_over);
 			loaded_image.addEventListener(MouseEvent.MOUSE_OUT, on_mouse_out);
 			addChild(loaded_image);
-			loaded_image.scaleX = loaded_image.scaleY = .5;
+			//loaded_image.scaleX = loaded_image.scaleY = .4;
 			
 			// then the sound
 			/*
@@ -46,6 +47,12 @@ package com.nakand.core
 			sound_channel = background_sound.play();
 			*/
 		}
+		
+		private function init_handler(event:Event):void {
+			var loader:Loader = Loader(event.target.loader);
+			loader.width = loader.height = 150;
+		}
+
 		
 		public function on_mouse_over(e : MouseEvent) : void {
 			var mouse_over_sound:Sound = new Sound();

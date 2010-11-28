@@ -42,7 +42,7 @@ package com.nakand.core {
 			background_sound.load(new URLRequest(sound));
 			sound_channel = background_sound.play();
 			var st:SoundTransform = new SoundTransform();
-			st.volume = .05;
+			st.volume = .3;
 			sound_channel.soundTransform = st;
 
 			var current_take : BaseTake = takes[takes_index];

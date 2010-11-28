@@ -75,6 +75,7 @@ package com.nakand.core {
 		}
 		
 		public function show_modal(the_modal : BaseModal) : void {
+			the_modal.x = the_modal.y = 20;
 			addChild(the_modal);
 			the_modal.show_it();
 			the_modal.addEventListener('onModalFinished', show_next_modal);
