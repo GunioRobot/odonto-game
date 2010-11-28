@@ -15,9 +15,10 @@ package
 	
 	public class OdontoGame extends Sprite
 	{
+		private var mainXML:XML;
+		
 		public function OdontoGame()
 		{
-			var mainXML:XML;
 			var loader:URLLoader = new URLLoader();
 			loader.addEventListener(Event.COMPLETE, onComplete);
 			loader.load(new URLRequest("../script.xml"));
@@ -26,14 +27,33 @@ package
 			{
 
 				mainXML = new XML(loader.data)
-				var first_scene_node:XML = mainXML..scene[0];
-				var first_scene:BaseScene = new BaseScene(first_scene_node);
+				var first_scene_id:String = mainXML.attribute("first");
+				var first_scene:BaseScene = new BaseScene(mainXML.scene.(@id==first_scene_id)[0]);
+				first_scene.addEventListener(BaseScene.ON_COMPLETE, on_complete_scene);
 
 				addChild(first_scene);
 				
 				first_scene.playIt();
 			}
-
+			
+		}
+		
+		public function on_complete_scene(e:Event) : void {
+				var current_scene:BaseScene = e.target as BaseScene;
+				var next_scene_id:String = current_scene.next_scene();
+				var scene_xml:XML = mainXML.scene.(@id==next_scene_id)[0];
+				trace("-------------- NEXT SCENE XML ---------------");
+				trace(scene_xml);
+				var next_scene:BaseScene = new BaseScene(scene_xml);
+				next_scene.addEventListener(BaseScene.ON_COMPLETE, on_complete_scene);
+				
+				trace("carregando a cena " + next_scene_id);
+				
+				removeChild(current_scene);
+				addChild(next_scene);
+				
+				next_scene.playIt()
+				
 		}
 	}
 }

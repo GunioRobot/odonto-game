@@ -1,25 +1,30 @@
 <scenes first="scene_1">
-	<scene id="scene_1" sound_path="../sound/starlightzone.mp3" regular="scene_2" good="scene_4">
+	<scene id="scene_1" sound_path="../sound/starlightzone.mp3" regular="scene_2">
 		<rules>
-			<rule name="bad" value="46"/>
-			<rule name="regular" value="27"/>
-			<good name="good" value="10"/>
+			<rule name="bad" scene="scene_3" value="46"/>
+			<rule name="regular" scene="scene_2" value="27"/>
+			<rule name="good" scene="scene_4" value="10"/>
 		</rules>
 		<take id="take_1" image_path="../images/scenario/cen_entrada.png" sound_path="../sound/secret.mp3">
 			<modal id="modal_1" type="food" sound_path="../sound/failyocarinaget.mp3">
 				<item image_path="../images/foods/abacaxi.png" sound_path="../sound/smallitemcatch.mp3" label="Abacaxi" option="" value="23"/>	
-				<item image_path="../images/foods/arroz.png" sound_path="../sound/smallitemcatch.mp3" label="Arroz" option="" value="23"/>	
-				<item image_path="../images/foods/frango.png" sound_path="../sound/smallitemcatch.mp3" label="Frango" option="" value="23"/>	
+				<item image_path="../images/foods/arroz.png" sound_path="../sound/smallitemcatch.mp3" label="Arroz" option="" value="5"/>	
+				<item image_path="../images/foods/frango.png" sound_path="../sound/smallitemcatch.mp3" label="Frango" option="" value="10"/>	
 			</modal>
 			<modal id="modal_2" type="food" sound_path="../sound/failyocarinaget.mp3">
-				<item image_path="../images/foods/sucrilhos.png" sound_path="../sound/smallitemcatch.mp3" label="Sucrilhos" option="" value="23"/>	
+				<item image_path="../images/foods/sucrilhos.png" sound_path="../sound/smallitemcatch.mp3" label="Sucrilhos" option="" value="4"/>	
 			</modal>
 		</take>
 		<take id="take_2" image_path="../images/scenario/cen02.png" sound_path="../sound/youredead.mp3"></take>
 		<take id="take_3" image_path="../images/scenario/cen03.png" sound_path="../sound/secret.mp3">
 			<modal id="modal_3" type="food" sound_path="../sound/failyocarinaget.mp3">
-				<item image_path="../images/foods/macarrao.png" sound_path="../sound/smallitemcatch.mp3" label="Macarrao" option="" value="23"/>	
+				<item image_path="../images/foods/macarrao.png" sound_path="../sound/smallitemcatch.mp3" label="Macarrao" option="" value="7"/>	
 			</modal>
 		</take>
+	</scene>
+	
+	
+	<scene id="scene_3" sound_path="../sound/starlightzone.mp3" regular="scene_2">
+		<take id="take_4" image_path="../images/scenario/cen02.png" sound_path="../sound/youredead.mp3"></take>
 	</scene>
 </scenes>
