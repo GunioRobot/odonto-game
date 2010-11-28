@@ -15,6 +15,7 @@ package com.nakand.core {
 		private var _id : String;
 		private var _sound : String;
 		private var _regularScene : String;
+		private var _final : Boolean = false;
 		
 		private var _score : Number = 0;
 		
@@ -24,11 +25,19 @@ package com.nakand.core {
 		private var _takes : Array;
 		private var _takes_index : Number = 0;
 		
+		private var loaded_sound:SoundChannel = new SoundChannel();
+		
 		public function BaseScene(scene_xml:XML) {
 			super();
 			this.id 			= scene_xml.attribute('id');
 			this.sound 			= scene_xml.attribute('sound_path');
 			this.regular_scene	= scene_xml.attribute('regular');
+			trace("'@final' in scene_xml " + ("@final" in scene_xml));
+			if("@final" in scene_xml) {
+				this._final = scene_xml.@final;
+			}
+			
+			trace("this._final -> " + this._final);
 			
 			_rules = new Dictionary();
 			_sorted_rule_values = new Array();
@@ -54,6 +63,12 @@ package com.nakand.core {
 				this.takes.push(base_take);
 			}
 			
+			addEventListener(Event.REMOVED_FROM_STAGE, on_removed_from_stage);
+			
+		}
+		
+		private function on_removed_from_stage(e:Event):void {
+			loaded_sound.stop();
 		}
 		
 		private function sortOnNumber(a:Number, b:Number):Number {
@@ -70,12 +85,11 @@ package com.nakand.core {
 		public function playIt() : void {
 			//add the sound of this scene
 			var background_sound:Sound = new Sound();
-			var sound_channel:SoundChannel = new SoundChannel;
 			background_sound.load(new URLRequest(sound));
-			sound_channel = background_sound.play();
+			loaded_sound = background_sound.play();
 			var st:SoundTransform = new SoundTransform();
 			st.volume = .3;
-			sound_channel.soundTransform = st;
+			loaded_sound.soundTransform = st;
 
 			var current_take : BaseTake = takes[_takes_index];
 			play_take(current_take);
@@ -159,6 +173,10 @@ package com.nakand.core {
 		public function set id(value:String):void
 		{
 			_id = value;
+		}
+		
+		public function is_final() : Boolean {
+			return _final;
 		}
 
 	}
