@@ -20,8 +20,19 @@ package com.nakand.core {
 		private var _takes : Array;
 		private var _takes_index : Number = 0;
 		
-		public function BaseScene() {
+		public function BaseScene(scene_xml:XML) {
 			super();
+			this.id 			= scene_xml.attribute('id');
+			this.sound 			= scene_xml.attribute('sound_path');
+			this.badScene 		= scene_xml.attribute('bad') || null;
+			this.regularScene	= scene_xml.attribute('regular');
+			this.goodScene 		= scene_xml.attribute('good') || null;
+			this.takes = new Array();
+			for each (var take:XML in scene_xml.take ) {
+				trace('loop take');
+				var base_take:BaseTake = new BaseTake(take);
+				this.takes.push(base_take);
+			}
 		}
 
 		public function playIt() : void {

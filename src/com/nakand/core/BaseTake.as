@@ -20,8 +20,16 @@ package com.nakand.core {
 		
 		private var finished : Boolean = false;
 		
-		public function BaseTake(){
+		public function BaseTake(take_xml:XML){
 			super();
+			this.id		= take_xml.attribute('id');
+			this.image 	= take_xml.attribute('image_path');
+			this.sound 	= take_xml.attribute('sound_path');
+			this.modals = new Array();
+			for each(var modal_xml:XML in take_xml.modal) {
+				var base_modal:BaseModal = new BaseModal(modal_xml);
+				this.modals.push(base_modal);
+			}
 		}
 
 		public function playIt() : void {

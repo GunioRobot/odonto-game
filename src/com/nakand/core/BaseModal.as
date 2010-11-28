@@ -12,8 +12,17 @@ package com.nakand.core {
 		private var _items : Array;
 		
 		
-		public function BaseModal(){
+		public function BaseModal(modal_xml:XML) {
 			super();
+			this.id 	= modal_xml.attribute('id');
+			this.sound	= modal_xml.attribute('sound_path');
+			this.type	= modal_xml.attribute('type');
+
+			this.items = new Array();
+			for each (var item_xml:XML in modal_xml.item) {
+				var base_item:BaseItem = new BaseItem(item_xml);
+				this.items.push(base_item);
+			}
 		}
 
 		public function show_it() : void {

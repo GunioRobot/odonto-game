@@ -19,9 +19,13 @@ package com.nakand.core
 		private var loaded_image : Loader;
 		private var loaded_sound : SoundChannel = new SoundChannel();
 
-		public function BaseItem()
-		{
+		public function BaseItem(item_xml:XML) {
 			super();
+			this.image 	= item_xml.attribute('image_path');
+			this.sound	= item_xml.attribute('sound_path');
+			this.label	= item_xml.attribute('label');
+			this.option = item_xml.attribute('option');
+			this.points	= item_xml.attribute('points');
 		}
 		
 		public function construct() : void {
