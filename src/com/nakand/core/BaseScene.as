@@ -6,16 +6,20 @@ package com.nakand.core {
 	import flash.media.SoundChannel;
 	import flash.media.SoundTransform;
 	import flash.net.URLRequest;
+	import flash.utils.Dictionary;
 	
-	public class BaseScene extends Sprite{
+	public class BaseScene extends Sprite {
+		
+		public static const ON_COMPLETE : String = "onSceneComplete";
 		
 		private var _id : String;
 		private var _sound : String;
-		private var _badScene : String;
 		private var _regularScene : String;
-		private var _goodScene : String;
 		
-		private var _rules : Object;
+		private var _score : Number = 0;
+		
+		private var _rules : Dictionary;
+		private var _sorted_rule_values : Array;
 		
 		private var _takes : Array;
 		private var _takes_index : Number = 0;
@@ -24,16 +28,44 @@ package com.nakand.core {
 			super();
 			this.id 			= scene_xml.attribute('id');
 			this.sound 			= scene_xml.attribute('sound_path');
-			this.badScene 		= scene_xml.attribute('bad') || null;
-			this.regularScene	= scene_xml.attribute('regular');
-			this.goodScene 		= scene_xml.attribute('good') || null;
+			this.regular_scene	= scene_xml.attribute('regular');
+			
+			_rules = new Dictionary();
+			_sorted_rule_values = new Array();
+			
+			for each (var rule:XML in scene_xml.rules.rule) {
+				var value:String = rule.@value;
+				_rules[value] = rule.@scene;
+				_sorted_rule_values.push(value);
+			}
+			
+			for (var r:Object in _rules) {
+				trace(r + " = " + _rules[r]);
+			}
+			
+			_sorted_rule_values.sort(sortOnNumber);
+			
+			trace("_sorted_rule_values -> "+ _sorted_rule_values);
+			
 			this.takes = new Array();
 			for each (var take:XML in scene_xml.take ) {
 				trace('loop take');
 				var base_take:BaseTake = new BaseTake(take);
 				this.takes.push(base_take);
 			}
+			
 		}
+		
+		private function sortOnNumber(a:Number, b:Number):Number {
+			if(a > b) {
+				return 1;
+			} else if(a < b) {
+				return -1;
+			} else  {
+				return 0;
+			}
+		}
+
 
 		public function playIt() : void {
 			//add the sound of this scene
@@ -45,16 +77,24 @@ package com.nakand.core {
 			st.volume = .3;
 			sound_channel.soundTransform = st;
 
-			var current_take : BaseTake = takes[takes_index];
+			var current_take : BaseTake = takes[_takes_index];
 			play_take(current_take);
 		}
 		
 		public function play_next_take(e : *) : void {
-			takes_index++;
-			removeChild(e.target as DisplayObject);
-			if (takes_index < takes.length ) {
-				play_take(takes[takes_index]);	
-			} 
+			_takes_index++;
+			var take:BaseTake = e.target as BaseTake;
+			this._score += take.score;
+			removeChild(take);
+			if (_takes_index < takes.length ) {
+				play_take(takes[_takes_index]);	
+			} else {
+				dispatch_complete_event();
+			}
+		}
+		
+		private function dispatch_complete_event() : void {
+			dispatchEvent(new Event(ON_COMPLETE));	
 		}
 		
 		public function play_take(the_take : BaseTake) : void {
@@ -63,16 +103,23 @@ package com.nakand.core {
 			 the_take.addEventListener('onTakeFinished', play_next_take);
 		}
 		
-		
-		public function get takes_index():Number
-		{
-			return _takes_index;
+		public function next_scene() : String {
+			var next_scene_id:String = null;
+			
+			for each (var rule_value:Number in _sorted_rule_values){
+				if(_score < rule_value) {
+					next_scene_id = _rules[rule_value];
+					break;
+				}
+			}
+			
+			if(next_scene_id == null) {
+				next_scene_id = regular_scene;
+			}
+			
+			return next_scene_id;
 		}
 		
-		public function set takes_index(value:Number):void
-		{
-			_takes_index = value;
-		}
 		
 		public function get takes():Array
 		{
@@ -84,34 +131,14 @@ package com.nakand.core {
 			_takes = value;
 		}
 		
-		public function get goodScene():String
-		{
-			return _goodScene;
-		}
-		
-		public function set goodScene(value:String):void
-		{
-			_goodScene = value;
-		}
-		
-		public function get regularScene():String
+		public function get regular_scene():String
 		{
 			return _regularScene;
 		}
 		
-		public function set regularScene(value:String):void
+		public function set regular_scene(value:String):void
 		{
 			_regularScene = value;
-		}
-		
-		public function get badScene():String
-		{
-			return _badScene;
-		}
-		
-		public function set badScene(value:String):void
-		{
-			_badScene = value;
 		}
 		
 		public function get sound():String
@@ -133,6 +160,6 @@ package com.nakand.core {
 		{
 			_id = value;
 		}
-		
+
 	}
 }

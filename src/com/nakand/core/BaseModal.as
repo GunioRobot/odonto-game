@@ -16,6 +16,7 @@ package com.nakand.core {
 		private var _id : String;
 		private var _sound : String;
 		private var _type : String;
+		private var _score : Number;
 		
 		private var _items : Array;
 		
@@ -26,6 +27,7 @@ package com.nakand.core {
 			this.id 	= modal_xml.attribute('id');
 			this.sound	= modal_xml.attribute('sound_path');
 			this.type	= modal_xml.attribute('type');
+			this.score = 0;
 
 			this.items = new Array();
 			for each (var item_xml:XML in modal_xml.item) {
@@ -69,7 +71,7 @@ package com.nakand.core {
 				addChild(item);
 				item.y = i * ITEM_SIZE + (MARGIN * (i + 1)); 
 				item.x = item_x;
-				item.addEventListener(MouseEvent.CLICK, on_click);
+				item.addEventListener(MouseEvent.CLICK, on_click_item);
 				item.construct();
 				if (i == 2) {
 					i = 0;
@@ -89,9 +91,10 @@ package com.nakand.core {
 			dispatchEvent(new Event("onModalFinished"));
 		}
 		
-		public function on_click(e : MouseEvent) : void {
-			trace(e.target.parent.label as String);
+		public function on_click_item(e : MouseEvent) : void {
+			var item:BaseItem = e.target.parent as BaseItem;
 			loaded_sound.stop();
+			this.score += item.value;
 			dispatch_finished_event();
 		}
 		
@@ -134,6 +137,17 @@ package com.nakand.core {
 		{
 			_sound = value;
 		}
+
+		public function get score():int
+		{
+			return _score;
+		}
+
+		public function set score(value:int):void
+		{
+			_score = value;
+		}
+
 		
 	}
 }

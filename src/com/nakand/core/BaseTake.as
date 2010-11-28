@@ -16,15 +16,16 @@ package com.nakand.core {
 		
 		private var _modals : Array;
 		
-		private var _modals_index : Number = 0;
+		private var _score : Number = 0;
 		
-		private var finished : Boolean = false;
+		private var _modals_index : Number = 0;
 		
 		public function BaseTake(take_xml:XML){
 			super();
 			this.id		= take_xml.attribute('id');
 			this.image 	= take_xml.attribute('image_path');
 			this.sound 	= take_xml.attribute('sound_path');
+			
 			this.modals = new Array();
 			for each(var modal_xml:XML in take_xml.modal) {
 				var base_modal:BaseModal = new BaseModal(modal_xml);
@@ -66,7 +67,9 @@ package com.nakand.core {
 		
 		public function show_next_modal(e : *) : void {
 			modals_index++;
-			removeChild(e.target as DisplayObject);
+			var the_modal:BaseModal = e.target as BaseModal;
+			this.score += the_modal.score;
+			removeChild(the_modal);
 			if (modals_index < modals.length ) {
 				show_modal(modals[modals_index]);	
 			} else {
@@ -131,6 +134,17 @@ package com.nakand.core {
 		{
 			_id = value;
 		}
+
+		public function get score():int
+		{
+			return _score;
+		}
+
+		public function set score(value:int):void
+		{
+			_score = value;
+		}
+
 		
 	}
 }

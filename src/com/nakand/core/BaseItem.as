@@ -14,7 +14,7 @@ package com.nakand.core
 		private var _sound : String;
 		private var _label : String;
 		private var _option : String;
-		private var _points : Number;
+		private var _value : Number;
 		
 		private var loaded_image : Loader;
 		private var loaded_sound : SoundChannel = new SoundChannel();
@@ -25,7 +25,7 @@ package com.nakand.core
 			this.sound	= item_xml.attribute('sound_path');
 			this.label	= item_xml.attribute('label');
 			this.option = item_xml.attribute('option');
-			this.points	= item_xml.attribute('points');
+			this.value	= item_xml.attribute('value');
 		}
 		
 		public function construct() : void {
@@ -112,14 +112,14 @@ package com.nakand.core
 			_option = value;
 		}
 
-		public function get points():Number
+		public function get value():Number
 		{
-			return _points;
+			return _value;
 		}
 
-		public function set points(value:Number):void
+		public function set value(value:Number):void
 		{
-			_points = value;
+			_value = value;
 		}
 
 	}
