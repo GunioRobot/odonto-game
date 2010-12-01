@@ -88,7 +88,7 @@ package com.nakand.core {
 			background_sound.load(new URLRequest(sound));
 			loaded_sound = background_sound.play();
 			var st:SoundTransform = new SoundTransform();
-			st.volume = .3;
+			st.volume = .15;
 			loaded_sound.soundTransform = st;
 
 			var current_take : BaseTake = takes[_takes_index];
@@ -121,7 +121,7 @@ package com.nakand.core {
 			var next_scene_id:String = null;
 			
 			for each (var rule_value:Number in _sorted_rule_values){
-				if(_score < rule_value) {
+				if(_score <= rule_value) {
 					next_scene_id = _rules[rule_value];
 					break;
 				}

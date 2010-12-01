@@ -1,33 +1,36 @@
 <scenes first="scene_1">
-	<scene id="scene_1" sound_path="../sound/starlightzone.mp3" regular="scene_2">
+
+	<scene id="scene_1" sound_path="../sound/starlightzone.mp3">
 		<rules>
-			<rule name="bad" scene="scene_3" value="100"/>
-			<rule name="regular" scene="scene_2" value="27"/>
-			<rule name="good" scene="scene_4" value="10"/>
+			<rule name="good" scene="scene_2" value="1"/>
+			<rule name="bad" scene="scene_3" value="-1"/>
 		</rules>
-		<take id="take_1" image_path="../images/scenario/cen_entrada.png" sound_path="../sound/secret.mp3">
-			<modal id="modal_1" type="food" sound_path="../sound/failyocarinaget.mp3">
-				<item image_path="../images/foods/abacaxi.png" sound_path="../sound/smallitemcatch.mp3" label="Abacaxi" option="" value="23"/>	
-				<item image_path="../images/foods/arroz.png" sound_path="../sound/smallitemcatch.mp3" label="Arroz" option="" value="5"/>	
-				<item image_path="../images/foods/frango.png" sound_path="../sound/smallitemcatch.mp3" label="Frango" option="" value="10"/>	
-			</modal>
-			<modal id="modal_2" type="food" sound_path="../sound/failyocarinaget.mp3">
-				<item image_path="../images/foods/sucrilhos.png" sound_path="../sound/smallitemcatch.mp3" label="Sucrilhos" option="" value="4"/>	
-			</modal>
-		</take>
-		<take id="take_2" image_path="../images/scenario/cen02.png" sound_path="../sound/youredead.mp3"></take>
-		<take id="take_3" image_path="../images/scenario/cen03.png" sound_path="../sound/secret.mp3">
-			<modal id="modal_3" type="food" sound_path="../sound/failyocarinaget.mp3">
-				<item image_path="../images/foods/macarrao.png" sound_path="../sound/smallitemcatch.mp3" label="Macarrao" option="" value="3"/>	
+		<take id="take_1" image_path="../images/scenario/cen_jogoC.png" sound_path="../sound/barriga-roncando.mp3" />
+		<take id="take_2" image_path="../images/scenario/cen03.png" sound_path="../sound/horseracegoal.mp3">
+			<modal id="modal_1" type="health" sound_path="../sound/oquefazer.mp3">
+				<item image_path="../images/objects/escova-menina.png" sound_path="../sound/escovardentes.mp3" label="Escovar Dentes" option="" value="1"/>	
+				<item image_path="../images/objects/cereal.png" sound_path="../sound/tomarcafe.mp3" label="Tomar Café" option="" value="-1"/>	
 			</modal>
 		</take>
 	</scene>
 	
-	<scene id="scene_2" sound_path="../sound/game1.mp3" regular="scene_4">
-		<take id="take_1" image_path="../images/scenario/cen03.png" sound_path="../sound/youredead.mp3"></take>
+	<scene id="scene_2" sound_path="../sound/starlightzone.mp3" regular="scene_4">
+		<take id="take_1" image_path="../images/scenario/cen04-menina.png" sound_path="../sound/levelcomplete.mp3"></take>
+		<take id="take_2" image_path="../images/scenario/cen05-menina.png" sound_path="../sound/muitobem.mp3"></take>
 	</scene>
 	
-	<scene id="scene_3" sound_path="../sound/shop.mp3" final="true">
-		<take id="take_4" image_path="../images/scenario/cen02.png" sound_path="../sound/youredead.mp3"></take>
+	<scene id="scene_3" sound_path="../sound/starlightzone.mp3" regular="scene_4">
+		<take id="take_1" image_path="../images/scenario/cen08B_bichos-menina.png" sound_path="../sound/sadtrombone.mp3"></take>
 	</scene>
+
+	<scene id="scene_4" sound_path="../sound/starlightzone.mp3" regular="scene_5">
+		<take id="take_1" image_path="../images/scenario/cen06_menina.png" sound_path="../sound/continuafome.mp3" >
+			<modal id="modal_1" type="food" sound_path="../sound/oquecomer.mp3">
+				<item image_path="../images/foods/cereal-choc.png" sound_path="../sound/cereal-choc.mp3" label="Cereal chocolate" option="" value="0"/>	
+				<item image_path="../images/foods/yakult.png" sound_path="../sound/yakult.mp3" label="Yakult" option="" value="0"/>	
+				<item image_path="../images/foods/maca.png" sound_path="../sound/maca.mp3" label="Maçã" option="" value="0"/>	
+			</modal>
+		</take>
+	</scene>	
+	
 </scenes>
