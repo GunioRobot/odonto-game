@@ -31,6 +31,55 @@
 				<item image_path="../images/foods/maca.png" sound_path="../sound/maca.mp3" label="Maçã" option="" value="0"/>	
 			</modal>
 		</take>
-	</scene>	
+	</scene>
+
+	<scene id="scene_5" sound_path="../sound/starlightzone.mp3">
+		<rules>
+			<rule name="good" scene="scene_6" value="1"/>
+			<rule name="bad" scene="scene_7" value="-1"/>
+		</rules>
+		<take id="take_1" image_path="../images/scenario/tema-shopp-mae.png" sound_path="../sound/shoppingalmoco.mp3" >
+			<modal id="modal_1" type="food" sound_path="../sound/shoppingoqcomer.mp3">
+				<item image_path="../images/foods/lanche.png" sound_path="../sound/lanche.mp3" label="Cereal chocolate" option="" value="0"/>	
+				<item image_path="../images/foods/macarrao.png" sound_path="../sound/macarrao.mp3" label="Yakult" option="" value="0"/>	
+				<item image_path="../images/foods/esfihas.png" sound_path="../sound/esfihas.mp3" label="Maçã" option="" value="0"/>	
+				<item image_path="../images/foods/pizza-chocolate.png" sound_path="../sound/pizza-chocolate.mp3" label="Maçã" option="" value="0"/>
+			</modal>
+			<modal id="modal_2" type="food" sound_path="../sound/escovarshopping.mp3">
+				<item image_path="../images/objects/escova+fio.png" sound_path="../sound/escovardentescerto.mp3" label="Escovar Dentes" option="" value="1"/>	
+				<item image_path="../images/objects/escova-menina.png" sound_path="../sound/escovarrapido.mp3" label="Tomar Café" option="" value="-1"/>	
+			</modal>
+		</take>
+	</scene>
+	
+	<scene id="scene_6" sound_path="../sound/starlightzone.mp3" regular="scene_8">
+		<take id="take_1" image_path="../images/scenario/cen04-menina.png" sound_path="../sound/levelcomplete.mp3"></take>
+	</scene>
+	
+	<scene id="scene_7" sound_path="../sound/starlightzone.mp3" regular="scene_8">
+		<take id="take_1" image_path="../images/scenario/tema-shopp.png" sound_path="../sound/itemcatch.mp3"></take>
+	</scene>
+	
+	<scene id="scene_8" sound_path="../sound/kakarikovillage.mp3" regular="scene_5">
+		<rules>
+			<rule name="good" scene="scene_9" value="1"/>
+			<rule name="bad" scene="scene_10" value="-1"/>
+		</rules>
+		<take id="take_1" image_path="../images/scenario/cen10C-menina.png" sound_path="../sound/smallitemcatch.mp3" />
+		<take id="take_2" image_path="../images/scenario/cen39-menina.png" sound_path="../sound/quesono.mp3">
+			<modal id="modal_1" type="health" sound_path="../sound/escolhachupeta.mp3">	
+				<item image_path="../images/objects/boneca.png" label="Tomar Café" option="" value="1"/>	
+				<item image_path="../images/objects/chupeta.png" label="Escovar Dentes" option="" value="-1"/>
+			</modal>
+		</take>
+	</scene>
+	
+	<scene id="scene_9" sound_path="../sound/kakarikovillage.mp3" final="true">
+		<take id="take_1" image_path="../images/scenario/cen40A-menina.png" sound_path="../sound/spiritualstoneget.mp3"></take>
+	</scene>
+	
+	<scene id="scene_10" sound_path="../sound/kakarikovillage.mp3" final="true">
+		<take id="take_1" image_path="../images/scenario/cen40B-menina.png" sound_path="../sound/spiritualstoneget.mp3"></take>
+	</scene>
 	
 </scenes>
